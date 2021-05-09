@@ -1,0 +1,99 @@
+.colors {
+  min-height: 80vh;
+  display: flex;
+  color: $main-color;
+}
+
+.color {
+  height: 80vh;
+  @include flex(space-evenly, center, column);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  h2 {
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+}
+
+.sliders {
+  @include flex(auto, auto, column);
+  position: absolute;
+  bottom: 0%;
+  padding: 1rem;
+  width: 85%;
+  border-radius: 1.5rem;
+  background: $brt-text-color;
+  //   opacity: 0;
+  //   pointer-events: none;
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.15rem 0.5rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border: none;
+    background: $main-color;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  //   Adjustment class
+  //   transform: translateY(100px);
+  transition: all 0.5s ease-in-out;
+}
+.sliders.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
+
+.panel {
+  @include flex(space-evenly, center, row);
+  height: 20vh;
+  button {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background: $main-color;
+    color: white;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: none;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.library-panel,
+.generate-panel,
+.save-panel {
+  @include flex(space-evenly, center, column);
+}
+
+.controls {
+  @include flex(auto, auto, column);
+}
+
+.adjust,
+.lock {
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  background: none;
+  margin: 2rem 0rem;
+}
+
+// Slider customization
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
+}

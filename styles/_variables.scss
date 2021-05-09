@@ -1,0 +1,13 @@
+$text-color: #22292d;
+$brt-text-color: #f5ebe1;
+$creme: #e2c8ab;
+$main-color: #0d303b;
+$sec-color: #235d75;
+$gray: #78777c;
+
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
