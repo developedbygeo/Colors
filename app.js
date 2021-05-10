@@ -4,6 +4,10 @@ const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelector("button.generate");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
+const pop = document.querySelector(".copy-container");
+const adjustBtn = document.querySelectorAll(".adjust");
+const closeAdjustBtn = document.querySelectorAll(".close-adjustment");
+const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
 
 // Event Listeners
@@ -15,6 +19,37 @@ colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => {
     updateTextUI(index);
   });
+});
+
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", () => {
+    copyToClip(hex);
+  });
+});
+adjustBtn.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    openAdjustPanel(index);
+  });
+});
+
+closeAdjustBtn.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    closeAdjustPanel(index);
+  });
+});
+
+// Alternative approach for pop-up to close on window click
+
+// window.addEventListener("click", (e) => {
+//   e.target === pop ? pop.classList.remove("active") : false;
+// });
+
+// Removing the popup once the appearing transition has ended
+
+pop.addEventListener("transitionend", () => {
+  const popBox = pop.children[0];
+  pop.classList.remove("active");
+  popBox.classList.remove("active");
 });
 
 // Functions
@@ -95,6 +130,8 @@ function hslCtrl(e) {
     .set("hsl.l", brightness.value)
     .set("hsl.h", hue.value);
   colorDivs[index].style.backgroundColor = color;
+  // Live sliders based on the selected value
+  colorSliders(color, hue, brightness, saturation);
 }
 
 function updateTextUI(index) {
@@ -128,6 +165,27 @@ function refreshInput() {
       slider.value = Math.floor(satValue * 100) / 100;
     }
   });
+}
+function copyToClip(hex) {
+  // Creating textarea and getting the value
+  const txtarea = document.createElement("textarea");
+  txtarea.value = hex.innerText;
+  document.body.appendChild(txtarea);
+  // Selecting txtarea
+  txtarea.select();
+  // Executing the copy command
+  document.execCommand("copy");
+  document.body.removeChild(txtarea);
+  // Animation
+  const popBox = pop.children[0];
+  pop.classList.add("active");
+  popBox.classList.add("active");
+}
+function openAdjustPanel(index) {
+  sliderContainers[index].classList.toggle("active");
+}
+function closeAdjustPanel(index) {
+  sliderContainers[index].classList.remove("active");
 }
 
 randomColors();
