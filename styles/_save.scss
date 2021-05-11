@@ -1,0 +1,43 @@
+.save-container.active,
+.library-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.save-name {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.save-popup.active,
+.library-popup.active {
+  transform: translateY(0rem);
+}
+.save-popup h4 {
+  font-style: italic;
+  color: $main-color;
+}
+
+.close-save,
+.close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.15rem 0.5rem;
+  border: none;
+  background: $main-color;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-save {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: $main-color;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

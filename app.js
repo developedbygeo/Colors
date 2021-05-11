@@ -5,11 +5,20 @@ const generateBtn = document.querySelector("button.generate");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
 const pop = document.querySelector(".copy-container");
+// Buttons
 const adjustBtn = document.querySelectorAll(".adjust");
 const closeAdjustBtn = document.querySelectorAll(".close-adjustment");
 const lockBtn = document.querySelectorAll(".lock");
+const saveBtn = document.querySelector(".save");
+const closeSaveBtn = document.querySelector(".close-save");
+const submitSaveBtn = document.querySelector(".submit-save");
+const saveCont = document.querySelector(".save-container");
+const saveInput = document.querySelector(".save-container input");
+const libBtn = document.querySelector(".library");
 const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
+// Local Storage
+let savedPalette = [];
 
 // Event Listeners
 generateBtn.addEventListener("click", randomColors);
@@ -29,6 +38,8 @@ currentHexes.forEach((hex) => {
     copyToClip(hex);
   });
 });
+
+// Adjusting functionality
 adjustBtn.forEach((btn, index) => {
   btn.addEventListener("click", () => {
     openAdjustPanel(index);
@@ -41,11 +52,20 @@ closeAdjustBtn.forEach((btn, index) => {
   });
 });
 
+// Locking functionality
+
 lockBtn.forEach((button, index) => {
   button.addEventListener("click", () => {
     lockColor(index);
   });
 });
+
+//  Saving functionality
+saveBtn.addEventListener("click", openPalette);
+closeSaveBtn.addEventListener("click", closePalette);
+
+// Submit-save functionality to store palette
+submitSaveBtn.addEventListener("click", savePalette);
 
 // Alternative approach for pop-up to close on window click
 
@@ -82,7 +102,6 @@ function randomColors() {
       initialColors.push(chroma(randomColor).hex());
     }
     initialColors.push(chroma(randomColor).hex());
-    console.log(randomColor.hex());
 
     // Adding color to the background
     div.style.backgroundColor = randomColor;
@@ -215,4 +234,43 @@ function lockColor(index) {
   lockBtn[index].children[0].classList.toggle("fa-lock");
 }
 
+function openPalette(e) {
+  const popup = saveCont.children[0];
+  saveCont.classList.add("active");
+  popup.classList.add("active");
+}
+
+function closePalette(e) {
+  const popup = saveCont.children[0];
+  saveCont.classList.remove("active");
+  popup.classList.remove("active");
+}
+
+function savePalette(e) {
+  saveCont.classList.remove("active");
+  pop.classList.remove("active");
+  const name = saveInput.value;
+  const colors = [];
+  currentHexes.forEach((hex) => {
+    colors.push(hex.innerText);
+  });
+  // Object for storing
+  let paletteNr = savedPalette.length;
+  const paletteObj = { name, colors, nr: paletteNr };
+  savedPalette.push(paletteObj);
+  // Saving to Local
+  savetoLocal(paletteObj);
+  saveInput.value = "";
+}
+
+function savetoLocal(paletteObj) {
+  let localPalette;
+  if (localStorage.getItem("palette") === null) {
+    localPalette = [];
+  } else {
+    localPalette = JSON.parse(localStorage.getItem("palette"));
+  }
+  localPalette.push(paletteObj);
+  localStorage.setItem("palette", JSON.stringify(localPalette));
+}
 randomColors();
