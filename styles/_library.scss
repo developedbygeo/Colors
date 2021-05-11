@@ -1,0 +1,38 @@
+.library-popup {
+  min-width: 40%;
+  padding: 1rem;
+  justify-content: flex-start;
+  overflow: scroll;
+  max-height: 50vh;
+}
+.custom-palette {
+  @include flex(space-evenly, center, row);
+  width: 100%;
+  padding: 2rem;
+}
+
+.minor-preview {
+  display: flex;
+  flex: 1;
+  div {
+    height: 5rem;
+    flex: 1;
+  }
+}
+.custom-palette h4 {
+  flex: 1;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.pick-palette-btn {
+  margin: 2rem;
+  padding: 1rem 3rem;
+  background: $main-color;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

@@ -16,6 +16,9 @@ const saveCont = document.querySelector(".save-container");
 const saveInput = document.querySelector(".save-container input");
 const libBtn = document.querySelector(".library");
 const sliderContainers = document.querySelectorAll(".sliders");
+const libraryContainer = document.querySelector(".library-container");
+const libraryBtn = document.querySelector(".library");
+const closeLibraryBtn = document.querySelector(".close-library");
 let initialColors;
 // Local Storage
 let savedPalette = [];
@@ -59,6 +62,9 @@ lockBtn.forEach((button, index) => {
     lockColor(index);
   });
 });
+
+libraryBtn.addEventListener("click", openLibrary);
+closeLibraryBtn.addEventListener("click", closeLibrary);
 
 //  Saving functionality
 saveBtn.addEventListener("click", openPalette);
@@ -261,6 +267,44 @@ function savePalette(e) {
   // Saving to Local
   savetoLocal(paletteObj);
   saveInput.value = "";
+  // Library
+  // Palette is the big DIV that we are appending everything to (title, preview, button)
+  const palette = document.createElement("div");
+  palette.classList.add("custom-palette");
+  const title = document.createElement("h4");
+  title.innerText = paletteObj.name;
+  const preview = document.createElement("div");
+  preview.classList.add("minor-preview");
+  paletteObj.colors.forEach((smallColor) => {
+    const smallDiv = document.createElement("div");
+    smallDiv.style.backgroundColor = smallColor;
+    preview.appendChild(smallDiv);
+  });
+  const paletteBtn = document.createElement("button");
+  paletteBtn.classList.add("pick-palette-btn");
+  paletteBtn.classList.add(paletteObj.nr);
+  paletteBtn.innerText = "Select";
+
+  // Adding event to the select button
+  paletteBtn.addEventListener("click", (e) => {
+    closeLibrary();
+    const paletteIndex = e.target.classList[1];
+    initialColors = [];
+    savedPalette[paletteIndex].colors.forEach((color, index) => {
+      initialColors.push(color);
+      colorDivs[index].style.backgroundColor = color;
+      const text = colorDivs[index].children[0];
+      checkTxtContrast(color, text);
+      updateTextUI(index);
+    });
+    libraryInputUpdate();
+  });
+
+  // Add to library (appending everything to the big div)
+  palette.appendChild(title);
+  palette.appendChild(preview);
+  palette.appendChild(paletteBtn);
+  libraryContainer.children[0].appendChild(palette);
 }
 
 function savetoLocal(paletteObj) {
@@ -273,4 +317,18 @@ function savetoLocal(paletteObj) {
   localPalette.push(paletteObj);
   localStorage.setItem("palette", JSON.stringify(localPalette));
 }
+
+function openLibrary() {
+  const popup = libraryContainer.children[0];
+  libraryContainer.classList.add("active");
+  popup.classList.add("active");
+}
+
+function closeLibrary() {
+  const popup = libraryContainer.children[0];
+  libraryContainer.classList.remove("active");
+  popup.classList.remove("active");
+}
+function libraryInputUpdate() {}
+// TODO - create function
 randomColors();
