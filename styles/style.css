@@ -279,4 +279,25 @@ input[type="range"] {
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+  .colors {
+    height: 55rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .colors h2 {
+    font-size: 1.6rem;
+  }
+  .controls {
+    display: flex;
+    flex-direction: row;
+  }
+  .controls button {
+    margin: 1rem;
+  }
+  .panel {
+    height: 10rem;
+  }
+}
 /*# sourceMappingURL=style.css.map */

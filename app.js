@@ -186,7 +186,7 @@ function updateTextUI(index) {
   const textHex = activeDiv.querySelector("h2");
   const icons = activeDiv.querySelectorAll(".controls button");
   textHex.innerText = color.hex();
-  // Checking the basckground contrast
+  // Checking the background contrast
   checkTxtContrast(color, textHex);
   for (icon of icons) {
     checkTxtContrast(color, icon);
@@ -260,8 +260,15 @@ function savePalette(e) {
   currentHexes.forEach((hex) => {
     colors.push(hex.innerText);
   });
-  // Object for storing
-  let paletteNr = savedPalette.length;
+  // Object for storing and correcting the length value
+  let paletteNr;
+  const paletteObjs = JSON.parse(localStorage.getItem("palette"));
+  if (paletteObjs) {
+    paletteNr = paletteObjs.length;
+  } else {
+    paletteNr = savedPalette.length;
+  }
+
   const paletteObj = { name, colors, nr: paletteNr };
   savedPalette.push(paletteObj);
   // Saving to Local
@@ -297,7 +304,7 @@ function savePalette(e) {
       checkTxtContrast(color, text);
       updateTextUI(index);
     });
-    libraryInputUpdate();
+    refreshInput();
   });
 
   // Add to library (appending everything to the big div)
@@ -329,6 +336,55 @@ function closeLibrary() {
   libraryContainer.classList.remove("active");
   popup.classList.remove("active");
 }
-function libraryInputUpdate() {}
-// TODO - create function
+
+function getfromLocal() {
+  if (localStorage.getItem("palette") === null) {
+    localPalette = [];
+  } else {
+    const paletteObjs = JSON.parse(localStorage.getItem("palette"));
+    savedPalette = [...paletteObjs];
+
+    paletteObjs.forEach((paletteObj) => {
+      const palette = document.createElement("div");
+      palette.classList.add("custom-palette");
+      const title = document.createElement("h4");
+      title.innerText = paletteObj.name;
+      const preview = document.createElement("div");
+      preview.classList.add("minor-preview");
+      paletteObj.colors.forEach((smallColor) => {
+        const smallDiv = document.createElement("div");
+        smallDiv.style.backgroundColor = smallColor;
+        preview.appendChild(smallDiv);
+      });
+      const paletteBtn = document.createElement("button");
+      paletteBtn.classList.add("pick-palette-btn");
+      paletteBtn.classList.add(paletteObj.nr);
+      paletteBtn.innerText = "Select";
+
+      // Adding event to the select button
+      paletteBtn.addEventListener("click", (e) => {
+        closeLibrary();
+        const paletteIndex = e.target.classList[1];
+        initialColors = [];
+        paletteObjs[paletteIndex].colors.forEach((color, index) => {
+          initialColors.push(color);
+          colorDivs[index].style.backgroundColor = color;
+          const text = colorDivs[index].children[0];
+          checkTxtContrast(color, text);
+          updateTextUI(index);
+        });
+        refreshInput();
+      });
+
+      // Add to library (appending everything to the big div)
+      palette.appendChild(title);
+      palette.appendChild(preview);
+      palette.appendChild(paletteBtn);
+      libraryContainer.children[0].appendChild(palette);
+    });
+  }
+}
+
+// localStorage.clear();
+getfromLocal();
 randomColors();
