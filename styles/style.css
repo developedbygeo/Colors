@@ -280,7 +280,7 @@ input[type="range"] {
   cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 450px) {
   .colors {
     height: 55rem;
     display: flex;
@@ -298,6 +298,51 @@ input[type="range"] {
   }
   .panel {
     height: 10rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .colors {
+    height: 75rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .colors h2 {
+    font-size: 1.6rem;
+  }
+  .controls {
+    display: flex;
+    flex-direction: row;
+  }
+  .controls button {
+    margin: 1rem;
+  }
+  .panel {
+    height: 20rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .colors {
+    height: 15vh;
+  }
+  .colors h2 {
+    font-size: 1rem;
+  }
+  .controls button {
+    margin: 1rem;
+    font-size: 1rem;
+  }
+  .panel {
+    height: 10vh;
+  }
+  .panel button {
+    padding: 1rem 1rem;
+    font-size: 0.75rem;
+    margin-top: 3rem;
+  }
+  .panel p {
+    font-size: 1rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
