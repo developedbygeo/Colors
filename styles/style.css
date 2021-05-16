@@ -299,6 +299,16 @@ input[type="range"] {
   .panel {
     height: 10rem;
   }
+  .sliders {
+    height: 13vh;
+    width: 100%;
+    padding: 0.15rem;
+  }
+  .sliders input {
+    margin: 0;
+    height: 40%;
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -319,6 +329,16 @@ input[type="range"] {
   }
   .panel {
     height: 10vh;
+  }
+  .sliders {
+    height: 10vh;
+    width: 100%;
+    padding: 0.15rem;
+  }
+  .sliders input {
+    margin: 0;
+    height: 40%;
+    width: 90%;
   }
 }
 
@@ -361,6 +381,16 @@ input[type="range"] {
   }
   .panel {
     height: 15vh;
+  }
+  .sliders {
+    height: 13vh;
+    width: 100%;
+    padding: 0.1rem;
+  }
+  .sliders input {
+    margin: -3px;
+    height: 60%;
+    width: 90%;
   }
 }
 /*# sourceMappingURL=style.css.map */
