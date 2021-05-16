@@ -1,6 +1,6 @@
 @media screen and (max-width: 450px) {
   .colors {
-    height: 55rem;
+    height: 50rem;
     display: flex;
     flex-direction: column;
     h2 {
@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 1024px) {
   .colors {
-    height: 75rem;
+    min-height: 69vh;
     display: flex;
     flex-direction: column;
     h2 {
@@ -36,13 +36,13 @@
     }
   }
   .panel {
-    height: 20rem;
+    height: 10vh;
   }
 }
 
 @media screen and (max-width: 400px) {
   .colors {
-    height: 15vh;
+    min-height: 80vh;
     h2 {
       font-size: 1rem;
     }
@@ -54,7 +54,7 @@
     }
   }
   .panel {
-    height: 10vh;
+    height: 20vh;
     button {
       padding: 1rem 1rem;
       font-size: 0.75rem;
@@ -62,6 +62,22 @@
     }
     p {
       font-size: 1rem;
+    }
+  }
+  @media screen and (max-width: 900px) and (min-width: 768px) {
+    .colors {
+      min-height: 60vh;
+    }
+    .panel {
+      height: 30rem;
+    }
+  }
+  @media screen and (max-width: 240px) {
+    .colors {
+      height: 40vh;
+    }
+    .panel {
+      height: 15vh;
     }
   }
 }
