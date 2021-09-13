@@ -13,6 +13,17 @@ body {
   color: #22292d;
 }
 
+h2 {
+  font-size: 2.5rem;
+}
+
+p,
+button,
+li,
+span {
+  font-size: 1.8rem;
+}
+
 button {
   font-family: "Poppins", sans-serif;
 }
@@ -66,9 +77,9 @@ svg {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 0.15rem 0.5rem;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+  padding: 0.07rem 0.4rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
   border: none;
   background: #0d303b;
   color: white;
@@ -313,9 +324,9 @@ input[type="range"] {
 
 @media screen and (max-width: 1024px) {
   .colors {
-    min-height: 69vh;
     display: flex;
     flex-direction: column;
+    height: 85vh;
   }
   .colors h2 {
     font-size: 1.6rem;
@@ -328,12 +339,12 @@ input[type="range"] {
     margin: 1rem;
   }
   .panel {
-    height: 10vh;
+    height: 15vh;
   }
   .sliders {
-    height: 10vh;
+    height: 10.5vh;
     width: 100%;
-    padding: 0.15rem;
+    padding: 0.5rem;
   }
   .sliders input {
     margin: 0;
@@ -344,7 +355,7 @@ input[type="range"] {
 
 @media screen and (max-width: 400px) {
   .colors {
-    min-height: 80vh;
+    height: 80vh;
   }
   .colors h2 {
     font-size: 1rem;
@@ -357,9 +368,8 @@ input[type="range"] {
     height: 20vh;
   }
   .panel button {
-    padding: 1rem 1rem;
-    font-size: 0.75rem;
-    margin-top: 3rem;
+    font-size: 1.2rem;
+    width: 100%;
   }
   .panel p {
     font-size: 1rem;
@@ -376,6 +386,9 @@ input[type="range"] {
 }
 
 @media screen and (max-width: 400px) and (max-width: 240px) {
+  html {
+    font-size: 35%;
+  }
   .colors {
     height: 40vh;
   }
@@ -391,6 +404,34 @@ input[type="range"] {
     margin: -3px;
     height: 60%;
     width: 90%;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 2000px) {
+  html {
+    font-size: 68.5%;
+  }
+  .panel button {
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  html {
+    font-size: 80.5%;
+  }
+  .color h2 {
+    font-size: 4.5rem;
+  }
+  .panel button {
+    font-size: 4rem;
+  }
+  .panel p {
+    font-size: 2.5rem;
+  }
+  .adjust,
+  .lock {
+    font-size: 4rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
