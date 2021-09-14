@@ -292,6 +292,9 @@ input[type="range"] {
 }
 
 @media screen and (max-width: 450px) {
+  html {
+    font-size: 55.5%;
+  }
   .colors {
     height: 50rem;
     display: flex;
@@ -313,12 +316,17 @@ input[type="range"] {
   .sliders {
     height: 13vh;
     width: 100%;
-    padding: 0.15rem;
   }
   .sliders input {
     margin: 0;
     height: 40%;
     width: 90%;
+  }
+  .sliders span {
+    font-size: 1rem;
+  }
+  .sliders button {
+    font-size: 1.4rem;
   }
 }
 

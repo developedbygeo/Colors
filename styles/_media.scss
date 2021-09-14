@@ -1,7 +1,7 @@
-@media screen and (max-width: 320px) {
-}
-
 @media screen and (max-width: 450px) {
+  html {
+    font-size: 55.5%;
+  }
   .colors {
     height: 50rem;
     display: flex;
@@ -23,11 +23,16 @@
   .sliders {
     height: 13vh;
     width: 100%;
-    padding: 0.15rem;
     input {
       margin: 0;
       height: 40%;
       width: 90%;
+    }
+    span {
+      font-size: 1rem;
+    }
+    button {
+      font-size: 1.4rem;
     }
   }
 }
